@@ -1,0 +1,20 @@
+{
+  "name": "flows",
+  "version": "0.0.1",
+  "description": "Track and display USGS water flow data for your favorite rivers and streams.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Miguel Del Valle",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
