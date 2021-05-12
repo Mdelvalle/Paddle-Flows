@@ -28,11 +28,11 @@ const App = () => {
         params: {
           format: 'json',
           sites: siteSearchInfo,
-          siteStatus: 'all'
+          siteStatus: 'active'
         }
       });
-      console.log(usgsData(response));
-      // setResults(parseUsgsSiteData(response));
+
+      setResults(usgsData(response));
       setErrorMessage('');
     } catch (err) {
       console.log('err', err);
