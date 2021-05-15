@@ -46,7 +46,7 @@ const App = () => {
 
   return (
     <div>
-      <FlowList flows={ results }/>
+      { results ? <FlowList flows={ results }/> : null }
       { errorMessage ? <p>{ errorMessage }</p> : null }
       <p>We have found { results.length } results</p>
     </div>

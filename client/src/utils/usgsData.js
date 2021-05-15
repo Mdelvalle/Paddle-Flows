@@ -9,7 +9,7 @@ const usgsData = (response) => {
     return containsStreamFlow || containsGageHeight;
   })
   
-  // USGS sites can be split up into separate time series, so
+  // USGS sites may be split up into separate time series, so
   // we merge sites with the same site code into one object
   let siteCache = {};
   for (const site of sites) {
@@ -60,6 +60,5 @@ const siteVariable = (site) => {
 
   return { value, description };
 }
-
 
 export default usgsData;
