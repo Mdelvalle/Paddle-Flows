@@ -1,9 +1,11 @@
 const FlowSummary = ({ name, streamFlowDesc, streamFlowVal, gageHeightDesc, gageHeightVal }) => {
   return (
-    <li>
-      <p>{ name }</p>
-      <p>{ streamFlowDesc } { streamFlowVal }</p>
-      <p>{ gageHeightDesc } { gageHeightVal }</p>
+    <li className="box flow-summary">
+      <p className="flow-summary-name">{ name }</p>
+      <div className="flow-summary-data">
+        <p>Flow: { streamFlowVal } ft&sup3;/s</p>
+        <p>Depth: { gageHeightVal } ft</p>
+      </div>
     </li>
   )
 }

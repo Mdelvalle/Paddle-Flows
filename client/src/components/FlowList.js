@@ -15,7 +15,7 @@ const FlowList = ({ flows }) => {
   })
 
   return (
-    <ul>
+    <ul className="">
       { flowList }
     </ul>
   )

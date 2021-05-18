@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import { useState, useEffect } from 'react';
 import FlowList from './components/FlowList.js';
 import usgs from './api/usgs';
@@ -46,9 +45,14 @@ const App = () => {
 
   return (
     <div>
+      <div className="container app">
+      <h1 className="title is-1">Paddle Flows</h1>
       { results ? <FlowList flows={ results }/> : null }
       { errorMessage ? <p>{ errorMessage }</p> : null }
-      <p>We have found { results.length } results</p>
+      </div>
+      <p className="app-results-len">
+        Displaying <span className="app-results-num">{ results.length }</span> results.
+      </p>
     </div>
   )
 }
