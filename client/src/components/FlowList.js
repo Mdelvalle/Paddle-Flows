@@ -3,7 +3,7 @@ import FlowSummary from './FlowSummary';
 
 const FlowList = ({ flows, len }) => {
   const flowList = flows.map((flow) => {
-    const { code, name, streamFlow, gageHeight, temp, wind, type, time } = flow;
+    const { code, name, streamFlow, gageHeight, temp, wind, icon, type } = flow;
 
     return <FlowSummary
       key={ code }
@@ -12,8 +12,8 @@ const FlowList = ({ flows, len }) => {
       gageHeightVal={ gageHeight.value }
       temp={ temp }
       wind={ wind }
+      icon={ icon }
       type={ type }
-      time={ time }
     />
   })
 

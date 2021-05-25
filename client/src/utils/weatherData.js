@@ -14,9 +14,9 @@ const weatherData = async ({ latitude, longitude }) => {
 
     return {
       temp: main.temp,
-      wind: wind.speed,
+      icon: weather[0].icon,
       type: weather[0].main,
-      time: weather[0].icon
+      wind: wind.speed
     }
   } catch (err) {
     throw new Error('An error related to the weather data occurred', err);

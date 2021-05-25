@@ -31,9 +31,9 @@ const App = () => {
           return {
             ...site,
             temp: weatherRes.temp,
-            wind: weatherRes.wind,
+            icon: weatherRes.icon,
             type: weatherRes.type,
-            time: weatherRes.time,
+            wind: weatherRes.wind
           }
         });
       })).then(res => {
