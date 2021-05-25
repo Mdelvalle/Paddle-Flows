@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import FlowList from './components/FlowList.js';
-import usgs from './api/usgs';
 import usgsData from './utils/usgsData';
+import weather from './utils/weatherData';
 
 
 const siteSearchInfo = [
@@ -15,44 +15,53 @@ const siteSearchInfo = [
   '08170500', // san marcos @ san marcos
   '08153500', // pedernales @ johnson city
   '08195000', // frio @ concan
+  '08178880', // medina @ bandera
 ].join(',');
 
 const App = () => {
   const [results, setResults] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const searchApi = async () => {
-    try {
-      const response = await usgs.get('/iv', {
-        params: {
-          format: 'json',
-          sites: siteSearchInfo,
-          siteStatus: 'active'
-        }
-      });
+  const getSiteData = () => {
+    // Parse usgs data into a list of unique sites
+    usgsData(siteSearchInfo).then(usgsSites => {
+      // Fetch weather data and merge with usgs sites
+      Promise.all(usgsSites.map(site => {
+        return weather(site.coordinates).then(weatherRes => {
+          return {
+            ...site,
+            temp: weatherRes.temp,
+            wind: weatherRes.wind,
+            type: weatherRes.type,
+            time: weatherRes.time,
+          }
+        });
+      })).then(res => {
+        // Update results when both usgs and weather data has been retrieved
+        setResults((res));
 
-      setResults(usgsData(response));
-      setErrorMessage('');
-    } catch (err) {
-      console.log('err', err);
-      setErrorMessage('Something went wrong - please try again.');
-    }
+        // No errors, so we clear the previous message if any
+        setErrorMessage('');
+      }).catch(error => {
+        setErrorMessage('Something went wrong - please try again later.', error);
+      });
+    }).catch(error => {
+      setErrorMessage('Something went wrong - please try again later.', error);
+    });
   }
 
   useEffect(() => {
-    searchApi()
-  }, [])
+    getSiteData()
+  }, []);
 
   return (
     <div>
       <div className="container app">
       <h1 className="title is-1">Paddle Flows</h1>
-      { results ? <FlowList flows={ results }/> : null }
+      { (!results && !errorMessage) ? <p>Loading...</p> : null }
+      { results && (!errorMessage) ? <FlowList flows={ results } len={ results.length } /> : null }
       { errorMessage ? <p>{ errorMessage }</p> : null }
       </div>
-      <p className="app-results-len">
-        Displaying <span className="app-results-num">{ results.length }</span> results.
-      </p>
     </div>
   )
 }

@@ -1,23 +1,32 @@
 import FlowSummary from './FlowSummary';
 
-const FlowList = ({ flows }) => {
+
+const FlowList = ({ flows, len }) => {
   const flowList = flows.map((flow) => {
-    const { code, name, streamFlow, gageHeight } = flow;
+    const { code, name, streamFlow, gageHeight, temp, wind, type, time } = flow;
 
     return <FlowSummary
       key={ code }
       name={ name}
       streamFlowVal={ streamFlow.value }
-      streamFlowDesc={ streamFlow.description }
       gageHeightVal={ gageHeight.value }
-      gageHeightDesc={ gageHeight.description }
+      temp={ temp }
+      wind={ wind }
+      type={ type }
+      time={ time }
     />
   })
 
   return (
-    <ul className="">
-      { flowList }
-    </ul>
+    <div>
+      <ul>
+        { flowList }
+      </ul>
+
+      <p className="flow-list-len">
+        Displaying <span className="flow-list-num">{ len }</span> results.
+      </p>
+    </div>
   )
 }
 

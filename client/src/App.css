@@ -16,13 +16,13 @@ html, body {
   padding: 36px 0;
 }
 
-.app-results-len {
+.flow-list-len {
   text-align: center;
   color: var(--message-color);
-  padding-bottom: 36px;
+  padding-top: 36px;
 }
 
-.app-results-num {
+.flow-list-num {
   font-weight: bolder;
 }
 
@@ -35,4 +35,18 @@ html, body {
   display: flex;
   justify-content: space-between;
   padding-top: 12px;
+  font-size: 1em;
+}
+
+.flow-summary-info {
+  display: flex;
+  align-items: center;
+}
+
+.flow-summary-icons {
+  font-size: 1.2em;
+}
+
+.flow-summary-weather-icon {
+  font-size: 1.5em;
 }
