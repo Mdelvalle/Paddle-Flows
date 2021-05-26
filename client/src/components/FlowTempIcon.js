@@ -6,7 +6,7 @@ import {
   WiNightAltShowers,
   WiSnow,
   WiDaySunny,
-  WiNightClear,
+  WiMoonAltFull,
   WiDayCloudy,
   WiNightCloudy,
   WiCloud,
@@ -42,7 +42,7 @@ const FlowTempIcon = ({ type, iconNum, dayOrNight }) => {
         return <WiDaySunny className="flow-summary-weather-icon mr-2" />
       }
 
-      return <WiNightClear className="flow-summary-weather-icon mr-2" />
+      return <WiMoonAltFull className="flow-summary-weather-icon mr-2" />
     },
     'Clouds': (iconNum, dayOrNight) => {
       if (iconNum === '02') {
