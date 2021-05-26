@@ -38,7 +38,7 @@ const FlowSummary = ({
         </div>
         <div className="flow-summary-info">
           <FiWind className="flow-summary-icons mr-2" />
-          <p>{ wind } mph</p>
+          <p>{ Math.round(wind) } mph</p>
         </div>
       </div>
     </li>
