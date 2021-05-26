@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import FlowList from './components/FlowList.js';
 import usgsData from './utils/usgsData';
 import weather from './utils/weatherData';
+import FlowSort from './components/FlowSort';
 
 
 const siteSearchInfo = [
@@ -54,13 +55,32 @@ const App = () => {
     getSiteData()
   }, []);
 
+  // Sort sites by flow rate, depth, temperature, or wind speed
+  const sortFlows = sortBy => {
+    const sorted = [...results].sort((curr, next) => {
+      switch (sortBy) {
+        case 'flow':
+          return next.streamFlow.value - curr.streamFlow.value;
+        case 'depth':
+          return next.gageHeight.value - curr.gageHeight.value;
+        case 'temp':
+          return next.temp - curr.temp;
+        case 'wind':
+          return curr.wind - next.wind;
+      }
+    });
+
+    setResults(sorted);
+  }
+
   return (
     <div>
       <div className="container app">
-      <h1 className="title is-1">Paddle Flows</h1>
-      { (!results && !errorMessage) ? <p>Loading...</p> : null }
-      { results && (!errorMessage) ? <FlowList flows={ results } len={ results.length } /> : null }
-      { errorMessage ? <p>{ errorMessage }</p> : null }
+        <h1 className="title is-1">Paddle Flows</h1>
+        <FlowSort sortFlows={ sortFlows } />
+        { (!results && !errorMessage) ? <p>Loading...</p> : null }
+        { results && (!errorMessage) ? <FlowList flows={ results } len={ results.length } /> : null }
+        { errorMessage ? <p>{ errorMessage }</p> : null }
       </div>
     </div>
   )
