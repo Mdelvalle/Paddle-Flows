@@ -16,6 +16,25 @@ html, body {
   padding: 36px 0;
 }
 
+.dropdown-menu-width {
+  min-width: auto;
+  width: 100%;
+}
+
+.dropdown-content > div {
+  text-align: center;
+  padding: unset;
+}
+
+.dropdown-item:hover {
+  font-weight: bold;
+}
+
+.dropdown-item-selected {
+  color: var(--main-bg-color);
+  font-weight: bolder;
+}
+
 .flow-list-len {
   text-align: center;
   color: var(--message-color);

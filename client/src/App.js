@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import FlowList from './components/FlowList.js';
 import usgsData from './utils/usgsData';
@@ -67,6 +67,8 @@ const App = () => {
           return next.temp - curr.temp;
         case 'wind':
           return curr.wind - next.wind;
+        default:
+          return results;
       }
     });
 
@@ -77,7 +79,7 @@ const App = () => {
     <div>
       <div className="container app">
         <h1 className="title is-1">Paddle Flows</h1>
-        <FlowSort sortFlows={ sortFlows } />
+        { (results && !errorMessage ) ? <FlowSort sortFlows={ sortFlows } /> : null }
         { (!results && !errorMessage) ? <p>Loading...</p> : null }
         { results && (!errorMessage) ? <FlowList flows={ results } len={ results.length } /> : null }
         { errorMessage ? <p>{ errorMessage }</p> : null }
