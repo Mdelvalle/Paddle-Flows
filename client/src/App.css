@@ -8,6 +8,13 @@ html, body {
   background-color: var(--main-bg-color);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+h1 {
+  font-family: 'Faster One', cursive;
+  text-align: center;
+}
+
 .app {
   display: flex;
   flex-direction: column;
