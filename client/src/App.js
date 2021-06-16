@@ -4,6 +4,7 @@ import FlowList from './components/FlowList.js';
 import usgsData from './utils/usgsData';
 import weather from './utils/weatherData';
 import FlowSort from './components/FlowSort';
+import Contact from './components/Contact';
 
 
 const siteSearchInfo = [
@@ -83,6 +84,7 @@ const App = () => {
         { (!results && !errorMessage) ? <p>Loading...</p> : null }
         { results && (!errorMessage) ? <FlowList flows={ results } len={ results.length } /> : null }
         { errorMessage ? <p>{ errorMessage }</p> : null }
+        <Contact />
       </div>
     </div>
   )
