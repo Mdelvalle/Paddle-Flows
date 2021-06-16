@@ -15,7 +15,7 @@ const weatherData = async ({ latitude, longitude }) => {
     return {
       temp: main.temp,
       icon: weather[0].icon,
-      type: weather[0].main,
+      type: weather[0].id,
       wind: wind.speed
     }
   } catch (err) {
